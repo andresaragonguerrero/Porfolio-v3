@@ -1,0 +1,123 @@
+:root {
+
+    /* formas */
+    --shape-polygon: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    --clip-path-custom: var(--shape-polygon);
+
+    /* colores */
+    --color-text: #010a09;
+    --color-background: #f6fefd;
+    --color-background-alpha: rgba(246, 254, 253, 70%);
+    --color-primary: #24e2cb;
+    --color-secondary: #81bbee;
+    --color-tertiary: #80142b;
+    --color-accent: #557be8;
+
+    --color-border: rgba(1, 10, 9, 0.12);
+
+    --color-shadow-sm: 0 1px 3px rgba(1, 10, 9, 0.08);
+    --color-shadow-md: 0 2px 8px rgba(1, 10, 9, 0.12);
+    --color-shadow-lg: 0 8px 16px rgba(1, 10, 9, 0.16);
+
+    /* fuentes */
+    --font-primary: "Stack Sans Notch", sans-serif;
+    --font-secondary: "Stack Sans Text", sans-serif;
+}
+
+:root.dark {
+    --color-text: #f6fefd;
+    --color-background: #121f1e;
+    --color-background-alpha: rgba(1, 9, 8, 70%);
+    --color-primary: #1dddc7;
+    --color-secondary: #114b7e;
+    --color-tertiary: #80142b;
+
+    --color-accent: #173fab;
+
+    --color-border: rgba(246, 254, 253, 0.15);
+
+    --color-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --color-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --color-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    transition: color .4s ease-out, background-color .5s ease-out;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+
+    background-color: var(--color-background);
+
+    scroll-behavior: smooth;
+}
+
+.article {
+    scroll-margin-top: 5rem;
+}
+
+li {
+    list-style: none;
+}
+
+.link {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+/* Animaciones de las transiciones entre páginas*/
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition {
+    background-color: var(--color-text);
+}
+
+::view-transition-old(root) {
+    animation: 1s cubic-bezier(0.4, 0, 0.2, 1) both shrink-behind;
+    transform-origin: center;
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    animation: 1s cubic-bezier(0.4, 0, 0.2, 1) both grow-over;
+    transform-origin: right center;
+    z-index: 2;
+}
+
+@keyframes shrink-behind {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0.9);
+        opacity: 0.9;
+    }
+}
+
+@keyframes grow-over {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    mix-blend-mode: normal;
+}
