@@ -78,7 +78,6 @@
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-
 .card-project[data-project="senda-animal"] {
     --card-bg: var(--bg-senda-animal);
 }
@@ -747,12 +746,10 @@
     padding: 0.5rem;
     padding-top: calc(4vh + 3rem);
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
     grid-template-rows: 1fr;
     grid-row: 1;
-    gap: 0.5rem;
     border: 1px solid hsla(345, 85%, 92%, 0.2);
-    border-radius: 10px;
     background-color: hsla(345, 85%, 92%, 0.05);
     box-shadow:
         0 4px 30px rgba(0, 0, 0, 0.03),
@@ -772,10 +769,13 @@
     content: "";
     height: 100%;
     width: 100%;
+    min-width: 0;
+    padding: 1rem;
     display: block;
     grid-column: 1;
     background-size: contain;
     background-position: center;
+    background-origin: content-box;
     background-repeat: no-repeat;
 }
 
@@ -797,7 +797,7 @@
 }
 
 .card-project:nth-child(even) {
-    grid-template-columns: 30% 70%;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
 }
 
 .card-project:nth-child(even)::before {
@@ -902,19 +902,21 @@
 }
 
 .card-project__content {
-    padding: 0 1rem;
+    height: 100%;
+    min-width: 0;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1.25rem;
 }
 
 .card-project__description {
     font-family: var(--font-secondary);
     font-size: 1.25rem;
     font-weight: normal;
-    line-height: 1.2;
+    line-height: 1.5;
     color: hsl(348, 92%, 41%);
 }
 
@@ -936,13 +938,14 @@
 }
 
 .card-project__link {
-    padding: .5rem .75rem;
+    margin-top: auto;
+    padding: .75rem 1.25rem;
     display: flex;
     align-items: center;
     gap: .5rem;
     font-family: var(--font-secondary);
     font-size: 1rem;
-    font-weight: normal;
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
     border-radius: 10px;
@@ -997,7 +1000,7 @@
     font-weight: 900;
     line-height: 0.8;
     letter-spacing: -0.06em;
-    color: grey;
+    color: hsl(348, 92%, 41%);
     pointer-events: none;
     white-space: pre-wrap;
     animation: workflow-title-scale linear both;
@@ -1049,7 +1052,6 @@
 .workflow__background--track {
     height: 100%;
     width: 40dvw;
-    background-image: url('/assets/workflow-bg--2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1151,8 +1153,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
     box-shadow: var(--color-shadow-sm);
-    background-color: red;
+    background-color: hsl(348, 92%, 41%);
 }
 
 .workflow__item-icon--wrapper {
@@ -1166,7 +1169,14 @@
     mask: var(--apply-clip-mask);
     -webkit-mask-size: stretch;
     mask-size: stretch;
-    background-color: green;
+    border: 1px solid hsla(345, 85%, 92%, 0.2);
+    background-color: hsla(345, 85%, 92%, 0.05);
+    box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.03),
+        0 1px 3px hsla(345, 20%, 10%, 0.12),
+        inset 0 1px 1px hsla(345, 85%, 92%, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .workflow__tool--wrapper {
@@ -1177,7 +1187,14 @@
     align-items: center;
     -webkit-mask: var(--apply-clip-mask);
     mask: var(--apply-clip-mask);
-    background-color: green;
+    border: 1px solid hsla(345, 85%, 92%, 0.2);
+    background-color: hsla(345, 85%, 92%, 0.05);
+    box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.03),
+        0 1px 3px hsla(345, 20%, 10%, 0.12),
+        inset 0 1px 1px hsla(345, 85%, 92%, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .workflow__item-name {
