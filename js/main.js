@@ -94,12 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const animatedTexts = document.querySelectorAll('.text-reveal-effect');
+    const animatedTitles = document.querySelectorAll('.title-reveal-effect');
     const animatedCards = document.querySelectorAll('.card-reveal-effect');
     const animatedPoly = document.querySelectorAll('.poly-reveal-effect');
 
     const observerOptions = {
         root: null,
-        threshold: 0.5
+        threshold: 0.8
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -112,6 +113,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }, observerOptions);
 
     animatedTexts.forEach(text => observer.observe(text));
+    animatedTitles.forEach(title => observer.observe(title));
     animatedCards.forEach(card => observer.observe(card));
     animatedPoly.forEach(poly => observer.observe(poly));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const dateElement = document.getElementById("current-date");
+    const today = new Date();
+    const formatter = new Intl.DateTimeFormat('es-ES', {
+        weekday: 'long',
+        day: '2-digit', 
+        month: 'long',   
+        year: 'numeric'  
+    });
+
+    let formattedDate = formatter.format(today);
+
+    formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
+    if (dateElement) {
+        dateElement.textContent = formattedDate;
+    }
 });
