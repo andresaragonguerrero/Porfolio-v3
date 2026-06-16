@@ -364,10 +364,14 @@ body {
 }
 
 .hero,
-.projects,
+.projects {
+    grid-area: 1 / 1;
+}
+
 .about,
 .languages {
     grid-area: 1 / 1;
+    align-self: start;
 }
 
 .hero {
@@ -375,7 +379,7 @@ body {
     overflow: hidden;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 4;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -434,6 +438,7 @@ body {
     container-type: inline-size;
     -webkit-mask: var(--apply-clip-mask);
     mask: var(--apply-clip-mask);
+    background-color: var(--bg-base);
     animation:
         morph-and-shrink-header linear both,
         hero-header-follow-scroll linear both;
@@ -691,6 +696,19 @@ body {
     align-items: center;
     justify-content: center;
     background-color: var(--bg-base);
+    animation: hero-body-background linear both;
+    animation-timeline: scroll(root);
+    animation-range: 100vh 200vh;
+}
+
+@keyframes hero-body-background {
+    from {
+        background-color: var(--bg-base);
+    }
+
+    to {
+        background-color: var(--bg-base);
+    }
 }
 
 .hero__body-content {
@@ -835,14 +853,14 @@ body {
     position: sticky;
     margin-top: 0;
     top: 0;
-    z-index: 2;
+    z-index: 4;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    /* background-color: var(--bg-base); */
+    background-color: var(--duotono-4);
     animation: projects-entrance linear both;
     animation-timeline: scroll(root);
-    animation-range: 250vh 370vh;
+    animation-range: 200vh 350vh;
 }
 
 .projects__backgrounds {
@@ -1103,9 +1121,8 @@ body {
     z-index: -1;
     background: linear-gradient(to right,
             hsla(345, 85%, 98%, 0.85) 0%,
-            hsla(345, 85%, 98%, 0.4) 70%,
-            transparent 100%);
-    filter: blur(8px);
+            hsla(345, 85%, 98%, 0.4) 100%);
+    filter: blur(10px);
     pointer-events: none;
 }
 
@@ -1167,7 +1184,7 @@ body {
     overflow: hidden;
     position: sticky;
     top: 0;
-    z-index: 4;
+    z-index: 6;
     transform: translateY(100%);
     display: flex;
     flex-direction: column;
@@ -1182,11 +1199,11 @@ body {
 
 @keyframes workflow-background {
     from {
-        background-color: var(--bg-base);
+        background-color: var(--duotono-3);
     }
 
     to {
-        background-color: var(--duotono-5);
+        background-color: var(--duotono);
     }
 }
 
@@ -1331,7 +1348,7 @@ body {
     padding-right: 5dvw;
     animation: section-lifecycle linear both;
     animation-timeline: scroll(root);
-    animation-range: 1050vh 1300vh;
+    animation-range: 1050vh 1250vh;
 }
 
 @keyframes section-lifecycle {
@@ -1339,15 +1356,8 @@ body {
         transform: translateY(100dvh);
     }
 
-    /* 82% equivale a los 1255vh, justo cuando el padre empieza a marcharse */
-    82% {
-        transform: translateY(-120dvh);
-        /* Ha completado su viaje de forma fluida */
-    }
-
     100% {
         transform: translateY(-120dvh);
-        /* Se congela respecto al padre y se va con él sin acelerar */
     }
 }
 
@@ -1490,17 +1500,30 @@ body {
     overflow: hidden;
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 5;
+    margin-top: 1200vh;
+    transform: none;
     display: grid;
     grid-template-columns: 55% 45%;
     align-items: flex-end;
     justify-items: flex-start;
     background-color: var(--duotono);
-    animation: about-entrance linear both;
+    animation: 
+        about-entrance linear both,
+        about-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1200vh 1300vh;
-    --about-fixed-start: 1300vh;
+    animation-range: 1200vh 1400vh, 1600vh 1750vh;
+    --about-fixed-start: 1400vh;
     --paragraph-duration: 50vh;
+}
+
+@keyframes about-entrance {
+    from {
+        transform: translateY(100vh);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 .about::before {
@@ -1516,6 +1539,15 @@ body {
     letter-spacing: -0.06em;
     color: white;
     pointer-events: none;
+}
+
+@keyframes about-exit {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100dvh);
+    }
 }
 
 .about__content {
@@ -1573,12 +1605,21 @@ body {
     animation-range: calc(var(--about-fixed-start) + (var(--paragraph-duration) * 5)) calc(var(--about-fixed-start) + (var(--paragraph-duration) * 6));
 }
 
+@keyframes text-reveal {
+    to {
+        background-position: 0% 0;
+    }
+}
+
 .about__image {
     height: 100%;
     width: 100%;
     overflow: hidden;
     position: relative;
     grid-column: 2;
+    animation: about-subtle-move linear both;
+    animation-timeline: scroll(root);
+    animation-range: 1200vh 1300vh;
 }
 
 .about__image::before {
@@ -1593,32 +1634,54 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     will-change: transform;
-    animation: about-subtle-move linear both;
+    animation: 
+        about-subtle-move linear both, 
+        about-image-fixed-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1200vh 1300vh;
+    animation-range: 1200vh 1300vh, 1600vh 1750vh;
 }
 
 @keyframes about-subtle-move {
     0% {
-        transform: translateY(-20vh) scale(1.15);
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes about-image-fixed-exit {
+    from {
+        transform: translateY(0vh) scaleY(1.05);
     }
 
-    100% {
-        transform: translateY(20vh) scale(1);
+    to {
+        transform: translateY(100vh) scaleY(1.05); 
     }
 }
 
 .languages {
-    position: fixed;
+    position: sticky;
     top: 0;
     overflow: hidden;
     height: 100dvh;
     width: 100%;
-    z-index: 6;
-    background-color: var(--duotono-2);
-    animation: languages-entrance linear both;
+    z-index: 4;
+    margin-top: 1600vh;
+    background-color: var(--duotono-3);
+    /* animation: languages-entrance linear both;
     animation-timeline: scroll(root);
-    animation-range: 1500vh 1650vh;
+    animation-range: 1500vh 1650vh; */
+}
+
+@keyframes languages-entrance {
+    from {
+        transform: translateY(100vh);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .languages__title {
@@ -1633,13 +1696,23 @@ body {
     text-transform: uppercase;
     line-height: 0.8;
     letter-spacing: -0.06em;
-    color: rgba(255, 255, 255, 0.15);
+    color: var(--bg-base);
     pointer-events: none;
     white-space: nowrap;
     user-select: none;
     animation: languages-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1650vh 1850vh;
+    animation-range: 1800vh 1900vh;
+}
+
+@keyframes languages-exit {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-120vh);
+    }
 }
 
 .languages__list {
@@ -1651,7 +1724,7 @@ body {
     justify-content: space-between;
     animation: languages-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1650vh 1850vh;
+    animation-range: 1800vh 1900vh;
 }
 
 .languages__item {
@@ -1707,20 +1780,20 @@ body {
 .contact {
     width: 100%;
     min-height: 100dvh;
-    background-color: var(--duotono-3);
-    color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 8rem 0;
-    z-index: 7;
+    z-index: 4;
     overflow: hidden;
     position: fixed;
     top: 0;
+    color: #ffffff;
+    background-color: var(--duotono-3);
     will-change: transform, opacity;
     animation: contact-entrance linear both;
     animation-timeline: scroll(root);
-    animation-range: 1750vh 1900vh;
+    animation-range: 1850vh 1900vh;
 }
 
 @keyframes contact-entrance {
@@ -1884,26 +1957,6 @@ body {
     filter: grayscale(0%) contrast(100%);
 }
 
-@keyframes languages-exit {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-120vh);
-    }
-}
-
-@keyframes languages-entrance {
-    from {
-        transform: translateY(100vh);
-    }
-
-    to {
-        transform: translateY(0);
-    }
-}
-
 @keyframes about-content-exit {
     0% {
         transform: translateY(0);
@@ -1911,22 +1964,6 @@ body {
 
     100% {
         transform: translateY(-120vh);
-    }
-}
-
-@keyframes text-reveal {
-    to {
-        background-position: 0% 0;
-    }
-}
-
-@keyframes about-entrance {
-    0% {
-        transform: translateY(100vh);
-    }
-
-    100% {
-        transform: translateY(0);
     }
 }
 
