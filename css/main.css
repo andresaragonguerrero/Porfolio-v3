@@ -1,7 +1,8 @@
 :root {
-    --gutter-x: 5rem;
+    --gutter-x: 6rem;
 
     --menu-color: hsl(348, 92%, 41%);
+    --bar-fill-color: hsl(348, 92%, 41%);
     --bg-base: hsl(345, 60%, 98%);
     --duotono: hsl(158, 45%, 18%);
     --duotono-2: hsl(28, 65%, 38%);
@@ -42,6 +43,96 @@
 
 body {
     background-color: var(--bg-base);
+}
+
+.scroll-progress {
+    position: fixed;
+    bottom: .2rem;
+    left: .2rem;
+    right: .2rem;
+    z-index: 99;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: .25rem;
+    height: 4px;
+    pointer-events: none;
+    animation: bar-color-shift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 840vh 850vh;
+}
+
+@keyframes bar-color-shift {
+    from {
+        --bar-fill-color: hsl(348, 92%, 41%);
+    }
+    to {
+        --bar-fill-color: #ffffff; /* Blanco para workflow, about, languages y contact */
+    }
+}
+
+.scroll-progress__segment {
+    position: relative;
+    height: 100%;
+    background-color: hsla(0, 0%, 100%, 0.1);
+    /* border-radius: 2px; */
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.scroll-progress__segment::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--bar-fill-color);
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+
+[data-section="hero"]::before {
+    animation: progress-fill linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0vh 200vh;
+}
+
+[data-section="projects"]::before {
+    animation: progress-fill linear both;
+    animation-timeline: scroll(root);
+    animation-range: 200vh 850vh;
+}
+
+[data-section="workflow"]::before {
+    animation: progress-fill linear both;
+    animation-timeline: scroll(root);
+    animation-range: 850vh 1200vh;
+}
+
+[data-section="about"]::before {
+    animation: progress-fill linear both;
+    animation-timeline: scroll(root);
+    animation-range: 1200vh 1500vh;
+}
+
+[data-section="languages"]::before {
+    animation: progress-fill linear both;
+    animation-timeline: scroll(root);
+    animation-range: 1500vh 1750vh;
+}
+
+[data-section="contact"]::before {
+    animation: progress-fill linear both;
+    animation-timeline: scroll(root);
+    animation-range: 1750vh 1800vh; 
+}
+
+@keyframes progress-fill {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
 }
 
 .text-reveal-effect {
@@ -448,7 +539,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    /* background-color: var(--bg-base); */
+    background-color: var(--bg-base);
     animation: hero-push-up linear both;
     animation-timeline: scroll(root);
     animation-range: 200vh 350vh;
