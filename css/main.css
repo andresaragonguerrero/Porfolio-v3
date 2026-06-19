@@ -1,4 +1,7 @@
 :root {
+    --gutter-x: 5rem;
+
+    --menu-color: hsl(348, 92%, 41%);
     --bg-base: hsl(345, 60%, 98%);
     --duotono: hsl(158, 45%, 18%);
     --duotono-2: hsl(28, 65%, 38%);
@@ -43,6 +46,7 @@ body {
 
 .text-reveal-effect {
     position: relative;
+    display: inline-block;
     opacity: 0.1;
     filter: blur(3px);
     transform: translateY(50px);
@@ -57,6 +61,13 @@ body {
     opacity: 1;
     filter: blur(0);
     transform: translateY(0);
+}
+
+.hero__description span.text-reveal-effect {
+    display: inline-block;
+    isolation: isolate;
+    -webkit-text-fill-color: initial;
+    color: hsl(348, 92%, 41%);
 }
 
 .title-reveal-effect {
@@ -158,13 +169,54 @@ body {
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border: 2px solid hsl(348, 92%, 41%);
+    border: 2px solid var(--menu-color);
     border-radius: 10px;
     background-color: transparent;
     cursor: pointer;
-    animation: button-extrusion linear both;
+    animation:
+        button-extrusion linear both,
+        menu-color-timeline linear both;
+    ;
     animation-timeline: scroll(root);
-    animation-range: 0vh 60vh;
+    animation-range: 0vh 60vh, 930vh 938vh;
+}
+
+@keyframes menu-color-timeline {
+
+    0%,
+    45% {
+        --menu-color: hsl(348, 92%, 41%);
+    }
+
+    50% {
+        --menu-color: #ffffff;
+    }
+
+    100% {
+        --menu-color: #ffffff;
+    }
+}
+
+.menu-button::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    pointer-events: none;
+    animation: color-wipe-extrusion linear both;
+    animation-timeline: scroll(root);
+    animation-range: 930vh 938vh;
+}
+
+@keyframes color-wipe-extrusion {
+    from {
+        clip-path: inset(105% 0 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
 }
 
 .menu-button:active {
@@ -173,15 +225,28 @@ body {
 }
 
 .menu-button .menu-bar {
-    display: block;
     height: 4px;
     width: 65%;
+    position: relative;
+    overflow: hidden;
+    display: block;
     border-radius: 2px;
-    background-color: hsl(348, 92%, 41%);
+    background-color: var(--menu-color);
     transition: translate 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
     animation: menu-appear linear both;
     animation-timeline: scroll(root);
     animation-range: 0vh 30vh;
+}
+
+.menu-button .menu-bar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #ffffff;
+    pointer-events: none;
+    animation: color-wipe-extrusion linear both;
+    animation-timeline: scroll(root);
+    animation-range: 930vh 938vh;
 }
 
 .menu-button .menu-bar:first-child {
@@ -356,7 +421,7 @@ body {
 }
 
 .scene {
-    height: 2000vh;
+    height: 1900vh;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -586,7 +651,7 @@ body {
     top: 0;
     left: 0;
     z-index: 0;
-    padding: 0 5%;
+    padding-inline: var(--gutter-x);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -857,7 +922,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    background-color: var(--duotono-4);
+    background-color: var(--bg-base);
     animation: projects-entrance linear both;
     animation-timeline: scroll(root);
     animation-range: 200vh 350vh;
@@ -1332,7 +1397,7 @@ body {
     width: 60dvw;
     position: relative;
     margin: 4rem 0 0;
-    padding: 0 2rem;
+    padding-inline: 0 var(--gutter-x);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1345,7 +1410,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-right: 5dvw;
+    padding-right: 0;
     animation: section-lifecycle linear both;
     animation-timeline: scroll(root);
     animation-range: 1050vh 1250vh;
@@ -1433,7 +1498,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 2px;
     box-shadow: var(--color-shadow-sm);
     background-color: hsl(348, 92%, 41%);
 }
@@ -1508,12 +1573,12 @@ body {
     align-items: flex-end;
     justify-items: flex-start;
     background-color: var(--duotono);
-    animation: 
+    animation:
         about-entrance linear both,
         about-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1200vh 1400vh, 1600vh 1750vh;
-    --about-fixed-start: 1400vh;
+    animation-range: 1200vh 1400vh, 1500vh 1650vh;
+    --about-fixed-start: 1300vh;
     --paragraph-duration: 50vh;
 }
 
@@ -1521,6 +1586,7 @@ body {
     from {
         transform: translateY(100vh);
     }
+
     to {
         transform: translateY(0);
     }
@@ -1545,6 +1611,7 @@ body {
     from {
         transform: translateY(0);
     }
+
     to {
         transform: translateY(-100dvh);
     }
@@ -1553,8 +1620,8 @@ body {
 .about__content {
     max-width: 50dvw;
     position: relative;
-    padding: 4rem;
     z-index: 3;
+    padding: 4rem var(--gutter-x);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1566,7 +1633,7 @@ body {
 
 .about__text {
     font-family: var(--font-secondary);
-    font-size: clamp(0.8, 1.25vh, 1.35rem);
+    font-size: 1.5rem;
     font-weight: normal;
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.2);
@@ -1634,17 +1701,18 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     will-change: transform;
-    animation: 
-        about-subtle-move linear both, 
+    animation:
+        about-subtle-move linear both,
         about-image-fixed-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1200vh 1300vh, 1600vh 1750vh;
+    animation-range: 1200vh 1300vh, 1500vh 1650vh;
 }
 
 @keyframes about-subtle-move {
     0% {
-        transform: scale(1.5);
+        transform: scale(1.10);
     }
+
     100% {
         transform: scale(1);
     }
@@ -1656,7 +1724,7 @@ body {
     }
 
     to {
-        transform: translateY(100vh) scaleY(1.05); 
+        transform: translateY(100vh) scaleY(1.05);
     }
 }
 
@@ -1667,7 +1735,7 @@ body {
     height: 100dvh;
     width: 100%;
     z-index: 4;
-    margin-top: 1600vh;
+    margin-top: 1500vh;
     background-color: var(--duotono-3);
     /* animation: languages-entrance linear both;
     animation-timeline: scroll(root);
@@ -1702,7 +1770,7 @@ body {
     user-select: none;
     animation: languages-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1800vh 1900vh;
+    animation-range: 1700vh 1800vh;
 }
 
 @keyframes languages-exit {
@@ -1717,14 +1785,14 @@ body {
 
 .languages__list {
     position: relative;
-    padding: 0 5rem;
+    padding-inline: var(--gutter-x);
     z-index: 2;
     display: grid;
     grid-template-columns: 60% 40%;
     justify-content: space-between;
     animation: languages-exit linear both;
     animation-timeline: scroll(root);
-    animation-range: 1800vh 1900vh;
+    animation-range: 1700vh 1800vh;
 }
 
 .languages__item {
@@ -1793,7 +1861,7 @@ body {
     will-change: transform, opacity;
     animation: contact-entrance linear both;
     animation-timeline: scroll(root);
-    animation-range: 1850vh 1900vh;
+    animation-range: 1750vh 1800vh;
 }
 
 @keyframes contact-entrance {
@@ -1808,9 +1876,8 @@ body {
 
 .contact__hero {
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto 4rem auto;
-    padding: 0 5rem;
+    margin-bottom: 4rem;
+    padding-inline: var(--gutter-x);
 }
 
 .contact__name {
@@ -1840,7 +1907,8 @@ body {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 8rem 5rem;
+    padding-block: 8rem;
+    padding-inline: var(--gutter-x);
 }
 
 .contact__column {
@@ -1945,7 +2013,9 @@ body {
     -webkit-mask: var(--apply-clip-mask);
     mask: var(--apply-clip-mask);
     filter: grayscale(100%) contrast(110%);
-    transition: filter 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition:
+        filter 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .contact__poly-container {
