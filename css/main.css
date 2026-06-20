@@ -1,6 +1,24 @@
 :root {
     --gutter-x: 6rem;
 
+    /* títulos de secciones */
+    --fs-xl-kinetic: 46vh;
+
+    --fs-title: clamp(1.8rem, 12cqw, 6rem);
+    --fs-subtitle: clamp(1rem, 6cqw, 3rem);
+
+    /* encabezados de descripciones */
+    --fs-heading-lg: clamp(2rem, 2.5vw, 3.5rem);
+
+    /* descripciones de secciones */
+    --fs-description-lg: clamp(1.45rem, 1.7vw, 1.6rem);
+
+    /* descripciones generales */
+    --fs-description: clamp(1.2rem, 1.4vw, 1.4rem);
+
+    /* resto de textos */
+    --fs-normal: clamp(0.95rem, 1.1vw, 1.2rem);
+
     --menu-color: hsl(348, 92%, 41%);
     --bar-fill-color: hsl(348, 92%, 41%);
     --bg-base: hsl(345, 60%, 98%);
@@ -54,7 +72,7 @@ body {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: .25rem;
-    height: 4px;
+    height: 2px;
     pointer-events: none;
     animation: bar-color-shift linear both;
     animation-timeline: scroll(root);
@@ -65,8 +83,9 @@ body {
     from {
         --bar-fill-color: hsl(348, 92%, 41%);
     }
+
     to {
-        --bar-fill-color: #ffffff; /* Blanco para workflow, about, languages y contact */
+        --bar-fill-color: #ffffff;
     }
 }
 
@@ -74,7 +93,7 @@ body {
     position: relative;
     height: 100%;
     background-color: hsla(0, 0%, 100%, 0.1);
-    /* border-radius: 2px; */
+    /* border-radius: 4px; */
     overflow: hidden;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -122,7 +141,7 @@ body {
 [data-section="contact"]::before {
     animation: progress-fill linear both;
     animation-timeline: scroll(root);
-    animation-range: 1750vh 1800vh; 
+    animation-range: 1750vh 1800vh;
 }
 
 @keyframes progress-fill {
@@ -261,7 +280,7 @@ body {
     align-items: center;
     gap: 8px;
     border: 2px solid var(--menu-color);
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: transparent;
     cursor: pointer;
     animation:
@@ -293,7 +312,7 @@ body {
     position: absolute;
     inset: -2px;
     border: 2px solid #ffffff;
-    border-radius: 10px;
+    border-radius: 4px;
     pointer-events: none;
     animation: color-wipe-extrusion linear both;
     animation-timeline: scroll(root);
@@ -321,7 +340,7 @@ body {
     position: relative;
     overflow: hidden;
     display: block;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: var(--menu-color);
     transition: translate 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
     animation: menu-appear linear both;
@@ -415,7 +434,7 @@ body {
 }
 
 .menu-content .nav-link {
-    font-size: 2.5rem;
+    font-size: var(--fs-heading-lg);
     color: white;
     text-decoration: none;
     font-weight: 900;
@@ -470,7 +489,7 @@ body {
     align-items: center;
     gap: 0px;
     border: 2px solid hsl(348, 92%, 41%);
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: transparent;
     cursor: pointer;
     transition: scale 0.25s ease, background-color 0.25s ease, rotate 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -488,7 +507,7 @@ body {
     display: block;
     height: 4px;
     width: 65%;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: hsl(348, 92%, 41%);
     transition: rotate 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), scale 0.3s ease;
 }
@@ -694,7 +713,7 @@ body {
 
 .marquee-track span {
     font-family: var(--font-primary);
-    font-size: 46vh;
+    font-size: var(--fs-xl-kinetic);
     font-weight: 900;
     line-height: 0.8;
     letter-spacing: -0.05em;
@@ -772,7 +791,7 @@ body {
 .upper-row__link,
 .upper-row__date {
     font-family: var(--font-secondary);
-    font-size: 1rem;
+    font-size: var(--fs-normal);
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
@@ -813,7 +832,7 @@ body {
 
 .lower-row__scroll-info--text {
     font-family: var(--font-secondary);
-    font-size: 1rem;
+    font-size: var(--fs-normal);
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
@@ -870,18 +889,19 @@ body {
 .hero__body-content {
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    position: relative;
+    container-type: inline-size;
 }
 
 .hero__description-wrapper {
     width: 100%;
-    max-width: 60dvw;
-    margin: auto 0;
+    max-width: 60%;
+    position: absolute;
+    top: var(--gutter-x);
+    left: var(--gutter-x);
+    margin: 0;
     display: grid;
-    gap: 4rem;
+    gap: 2rem;
     animation: hero-description-reveal linear both;
     animation-timeline: scroll(root);
     animation-range: 100vh 200vh;
@@ -902,13 +922,32 @@ body {
     }
 }
 
+.hero__description-wrapper::after {
+    content: "";
+    width: calc(100cqw - (var(--gutter-x) * 2));
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    height: 1px;
+    background-color: hsl(348, 92%, 41%);
+}
+
 .hero__description {
+    text-align: left;
+}
+
+.hero__motto {
+    text-align: right;
+}
+
+.hero__description,
+.hero__motto {
     font-family: var(--font-secondary);
-    font-size: clamp(1.2rem, 1.8vw, 2.2rem);
+    font-size: var(--fs-description-lg);
     font-weight: normal;
     line-height: 1.4;
-    text-align: center;
-    background: linear-gradient(to right, hsl(348, 92%, 41%) 50%, hsla(348, 92%, 41%, 0.4) 50%);
+    background: linear-gradient(to right, hsl(348, 92%, 41%) 50%,
+            hsla(348, 92%, 41%, 0.4) 50%);
     background-size: 200% 100%;
     background-position: 100% 0;
     -webkit-background-clip: text;
@@ -938,17 +977,38 @@ body {
     text-transform: uppercase;
 }
 
+.hero__motto-wrapper {
+    max-width: 40%;
+    position: absolute;
+    bottom: var(--gutter-x);
+    right: var(--gutter-x);
+    animation: hero-description-reveal linear both;
+    animation-timeline: scroll(root);
+    animation-range: 100vh 200vh;
+}
+
+.hero__motto-wrapper::before {
+    content: "";
+    width: calc(100cqw - (var(--gutter-x) * 2));
+    position: absolute;
+    top: -1rem;
+    right: 0;
+    height: 1px;
+    background-color: hsl(348, 92%, 41%);
+}
+
 .hero__title {
     color: hsl(348, 92%, 41%);
     writing-mode: initial;
     transform: none;
     font-family: var(--font-primary);
-    font-size: clamp(1.8rem, 12cqw, 6rem);
+    font-size: var(--fs-title);
     font-weight: 900;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
     white-space: nowrap;
-    background: linear-gradient(to right, hsl(348, 92%, 41%) 50%, hsla(348, 92%, 41%, 0.4) 50%);
+    background: linear-gradient(to right, hsl(348, 92%, 41%) 50%,
+            hsla(348, 92%, 41%, 0.4) 50%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -959,12 +1019,13 @@ body {
     writing-mode: initial;
     transform: none;
     font-family: var(--font-primary);
-    font-size: clamp(1rem, 6cqw, 3rem);
+    font-size: var(--fs-subtitle);
     font-weight: 900;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
     white-space: nowrap;
-    background: linear-gradient(to right, hsl(348, 92%, 41%) 50%, hsla(348, 92%, 41%, 0.4) 50%);
+    background: linear-gradient(to right, hsl(348, 92%, 41%) 50%,
+            hsla(348, 92%, 41%, 0.4) 50%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1066,7 +1127,7 @@ body {
     image-rendering: -webkit-optimize-contrast;
     opacity: 0;
     filter: brightness(90%) contrast(120%);
-    /* mix-blend-mode: color-burn; */
+    mix-blend-mode: color-burn;
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -1085,14 +1146,7 @@ body {
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
     grid-template-rows: 1fr;
     grid-row: 1;
-    border: 1px solid hsla(345, 85%, 92%, 0.2);
-    background-color: hsla(345, 85%, 92%, 0.05);
-    box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.03),
-        0 1px 3px hsla(345, 20%, 10%, 0.12),
-        inset 0 1px 1px hsla(345, 85%, 92%, 0.25);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background-color: var(--bg-base);
     transform: translateY(100dvh);
     will-change: transform;
     animation: card-stacking linear both;
@@ -1182,7 +1236,7 @@ body {
     border-right: 1px solid hsla(345, 85%, 92%, 0.2);
     border-bottom: 1px solid hsla(345, 85%, 92%, 0.2);
     font-family: var(--font-primary);
-    font-size: 4vh;
+    font-size: var(--fs-heading-lg);
     font-weight: 900;
     line-height: 0.8;
     letter-spacing: -0.06em;
@@ -1254,7 +1308,7 @@ body {
     position: relative;
     padding: 0.75rem 0;
     font-family: var(--font-secondary);
-    font-size: clamp(0.8rem, 1.25vw, 1.15rem);
+    font-size: var(--fs-normal);
     font-weight: normal;
     line-height: 1.4;
     color: hsl(348, 92%, 41%);
@@ -1295,12 +1349,9 @@ body {
 .card-project__tools span {
     padding: .5rem .75rem;
     border: 1px solid hsl(348, 92%, 41%);
-
-    /* antes 10px */
-    border-radius: 2px;
-
+    border-radius: 4px;
     font-family: var(--font-secondary);
-    font-size: clamp(0.8rem, 1.25vw, 1.15rem);
+    font-size: var(--fs-normal);
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -1316,13 +1367,13 @@ body {
     align-items: center;
     gap: .5rem;
     font-family: var(--font-secondary);
-    font-size: clamp(0.8rem, 1.25vw, 1.15rem);
+    font-size: var(--fs-normal);
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
     text-decoration: none;
     letter-spacing: 0.08em;
-    border-radius: 2px;
+    border-radius: 4px;
     color: hsl(345, 60%, 98%);
     background-color: hsl(348, 92%, 41%);
 }
@@ -1392,7 +1443,7 @@ body {
     font-weight: 900;
     line-height: 0.8;
     letter-spacing: -0.06em;
-    color: hsl(348, 92%, 41%);
+    color: #ffffff;
     pointer-events: none;
     white-space: pre-wrap;
     animation: workflow-title-scale linear both;
@@ -1519,11 +1570,11 @@ body {
 
 .workflow__title {
     font-family: var(--font-primary);
-    font-size: 2.5rem;
+    font-size: var(--fs-heading-lg);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 2rem;
-    color: hsl(348, 92%, 41%);
+    color: #ffffff;
 }
 
 .workflow__tool-list {
@@ -1582,16 +1633,14 @@ body {
 .workflow__item-name--wrapper {
     min-width: 6rem;
     position: absolute;
-    top: -15px;
-    left: -15px;
+    top: -18px;
+    left: -18px;
     z-index: 1;
-    padding: .25rem .75rem;
+    padding: .5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 2px;
-    box-shadow: var(--color-shadow-sm);
-    background-color: hsl(348, 92%, 41%);
+    background-color: var(--duotono-4);
 }
 
 .workflow__item-icon--wrapper {
@@ -1602,16 +1651,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: 1px solid hsla(345, 85%, 92%, 0.2);
-    background-color: hsla(345, 85%, 92%, 0.05);
-    box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.03),
-        0 1px 3px hsla(345, 20%, 10%, 0.12),
-        inset 0 1px 1px hsla(345, 85%, 92%, 0.25);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    filter:
-        drop-shadow(0 4px 30px rgba(0, 0, 0, 0.03)) drop-shadow(0 1px 3px hsla(345, 20%, 10%, 0.12));
 }
 
 .workflow__item-icon--wrapper::before {
@@ -1624,8 +1663,11 @@ body {
     -webkit-mask-size: stretch;
     mask-size: stretch;
     background-color: hsla(345, 85%, 92%, 0.05);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+}
+
+.workflow__item-icon {
+    mix-blend-mode: luminosity;
+    padding: 0.4rem;
 }
 
 .workflow__tool--wrapper {
@@ -1634,19 +1676,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid hsla(345, 85%, 92%, 0.2);
     background-color: hsla(345, 85%, 92%, 0.05);
-    box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.03),
-        0 1px 3px hsla(345, 20%, 10%, 0.12),
-        inset 0 1px 1px hsla(345, 85%, 92%, 0.25);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
 }
 
 .workflow__tool-list .workflow__item-name {
     font-family: var(--font-secondary);
-    font-size: 1.5rem;
+    font-size: var(--fs-normal);
     color: #fff;
     white-space: nowrap;
 }
@@ -1724,8 +1759,9 @@ body {
 
 .about__text {
     font-family: var(--font-secondary);
-    font-size: 1.5rem;
+    font-size: var(--fs-description);
     font-weight: normal;
+    text-align: left;
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.2);
     background-image: linear-gradient(to right, rgb(255, 255, 255) 50%, transparent 50%);
@@ -1906,7 +1942,7 @@ body {
 
 .languages__name {
     font-family: var(--font-primary);
-    font-size: 2.5rem;
+    font-size: var(--fs-heading-lg);
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -1921,7 +1957,7 @@ body {
 .languages__skill--label,
 .languages__skill--text {
     font-family: var(--font-secondary);
-    font-size: 1.5rem;
+    font-size: var(--fs-description);
     color: white;
 }
 
@@ -1931,7 +1967,7 @@ body {
 }
 
 .languages__skill--text {
-    font-size: clamp(0.8, 1.25vh, 1.25rem);
+    font-size: var(--fs-normal);
     font-weight: lighter;
     line-height: 1.4;
 }
@@ -1973,19 +2009,19 @@ body {
 
 .contact__name {
     font-family: var(--font-primary), sans-serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-size: var(--fs-title);
     font-weight: 900;
     line-height: 0.8;
-    letter-spacing: -0.06em;
+    letter-spacing: 0.05rem;
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
 
 .contact__role {
     font-family: var(--font-secondary), sans-serif;
-    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-size: var(--fs-subtitle);
     font-weight: 300;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.05em;
     color: hsl(0deg 0% 100% / 60%);
     text-transform: uppercase;
 }
@@ -2025,7 +2061,7 @@ body {
 
 .contact__label {
     font-family: var(--font-secondary), sans-serif;
-    font-size: 0.9rem;
+    font-size: var(--fs-normal);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: hsl(0deg 0% 100% / 40%);
@@ -2036,7 +2072,7 @@ body {
     font-family: var(--font-primary), sans-serif;
     color: #ffffff;
     text-decoration: none;
-    font-size: clamp(1.2rem, 1.8vw, 2.2rem);
+    font-size: var(--fs-description);
     font-weight: 500;
     transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     position: relative;
@@ -2048,7 +2084,7 @@ body {
 
 .contact__social-tag {
     font-family: var(--font-secondary), sans-serif;
-    font-size: 1rem;
+    font-size: var(--fs-normal);
     font-weight: 300;
     color: hsl(0deg 0% 100% / 50%);
     display: inline-block;
@@ -2092,9 +2128,8 @@ body {
     width: clamp(200px, 25vw, 350px);
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 4px;
     background-color: #1a1a1a;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .contact__image {
