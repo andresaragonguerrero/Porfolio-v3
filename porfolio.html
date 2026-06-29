@@ -101,7 +101,8 @@
                             <img src="/assets/hero-captura-domain.png" alt="Proyecto o concepto 2" loading="lazy">
                         </figure>
                         <figure class="hero__image-item card-reveal-effect">
-                            <img src="/assets/hero-captura-infrastructure.png" alt="Proyecto o concepto 3" loading="lazy">
+                            <img src="/assets/hero-captura-infrastructure.png" alt="Proyecto o concepto 3"
+                                loading="lazy">
                         </figure>
                     </div>
 
@@ -174,71 +175,39 @@
         <section class="projects">
             <h2 class="projects__title">Proyectos</h2>
             <ul class="projects__track">
-                <li class="projects__card card-project" data-project="senda-animal" style="--index: 1;">
-
-                    <h3 class="card-project__title">Senda Animal</h3>
-
-                    <div class="card-project__content">
-                        <p class="card-project__description text-reveal-effect">
+                <!-- Proyecto 1 -->
+                <li class="project__item">
+                    <div class="project__item-title">
+                        <h3 class="">Senda Animal</h3>
+                    </div>
+                    <figure class="project__item-image">
+                        <img class="project__item-image-media" src="assets/captura-senda-animal.png"
+                            alt="Proyecto del zoo">
+                    </figure>
+                    <div class="project__item-description">
+                        <p class="project__item-description-text">
                             Sitio web informativo sobre un zoológico ficticio, desarrollado con Angular, SCSS.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Este proyecto se encuentra en desarrollo.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Me estoy centrando en aprender a estructurar una aplicación Angular utilizando componentes y
                             servicios.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Pretendo aplicar buenas prácticas de desarrollo y emplear patrones de diseño.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <div class="card-project__tools">
-                            <span class="">Angular</span>
-                            <span class="">TypeScript</span>
-                            <span class="">Feature-based Architecture</span>
-                        </div>
-                        <a href="https://senda-animal.vercel.app" class="card-project__link">Visitar web
-                            <!-- iconamoon -->
-                            <svg class="card-project__link-icon" height="24px" width="24px"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M11 4H4v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5M9 15L20 4m-5 0h5v5" />
-                            </svg>
-                        </a>
                     </div>
-
-                </li>
-                <!-- -->
-
-                <li class="projects__card card-project" data-project="bestashop" style="--index: 2;">
-
-                    <h3 class="card-project__title">Bestashop</h3>
-
-                    <div class="card-project__content">
-                        <p class="card-project__description text-reveal-effect">
-                            Aplicación web de demostración de una tienda online desarrollada con Angular. Incluye
-                            catálogo de productos, filtros, carrito de compra y gestión de sesión de usuario.
-                            <span class="text-reveal__bg"></span>
-                        </p>
-                        <p class="card-project__description text-reveal-effect">
-                            Implementé un catálogo de productos con búsqueda, filtros y ordenación, así como un carrito
-                            de compra persistente utilizando LocalStorage.
-                            Durante el desarrollo trabajé con Angular y RxJS para gestionar el flujo de datos mediante
-                            Observables y servicios compartidos.
-                            <span class="text-reveal__bg"></span>
-                        </p>
-                        <div class="card-project__tools">
-                            <span class="">Angular</span>
-                            <span class="">TypeScript</span>
-                        </div>
-                        <a href="https://bestashop.vercel.app/" class="card-project__link">Visitar web
+                    <div class="project__item-tools">
+                        <span class="project__item-tools-tag">Angular</span>
+                        <span class="project__item-tools-tag">TypeScript</span>
+                        <span class="project__item-tools-tag">Feature-based Architecture</span>
+                    </div>
+                    <div class="project__item-link">
+                        <a href="https://senda-animal.vercel.app" class="project__item-link-anchor">Visitar web
                             <!-- iconamoon -->
-                            <svg class="card-project__link-icon" height="24px" width="24px"
+                            <svg class="project__item-link-icon" height="24px" width="24px"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2"
@@ -247,38 +216,40 @@
                         </a>
                     </div>
                 </li>
-                <!-- -->
-
-                <li class="projects__card card-project" data-project="analizador-minerales" style="--index: 3;">
-
-                    <h3 class="card-project__title">Analizador de minerales</h3>
-
-                    <div class="card-project__content">
-                        <p class="card-project__description text-reveal-effect">
+                <!-- Proyecto 2 -->
+                <li class="project__item">
+                    <div class="project__item-title">
+                        <h3 class="">Bestashop</h3>
+                    </div>
+                    <figure class="project__item-image">
+                        <img class="project__item-image-media" src="assets/captura-bestashop.png"
+                            alt="Proyecto del zoo">
+                    </figure>
+                    <div class="project__item-description">
+                        <p class="project__item-description-text">
                             Una aplicación en Angular para practicar y demostrar arquitectura y buenas prácticas de
                             código.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Este proyecto nació como un ejercicio en un curso. Su objetivo principal era servir como un
                             campo de pruebas para aplicar de forma concreta principios de diseño de software y
                             arquitectura limpia empleando Angular.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Intenté aplicar patrones de diseño específicos (como Inyección de Dependencias, Servicios o
                             Repository) y los principios SOLID para separar claramente las responsabilidades.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <div class="card-project__tools">
-                            <span class="">Angular</span>
-                            <span class="">TypeScript</span>
-                            <span class="">Type-based Architecture</span>
-                        </div>
+                    </div>
+                    <div class="project__item-tools">
+                        <span class="project__item-tools-tag">Angular</span>
+                        <span class="project__item-tools-tag">TypeScript</span>
+                        <span class="project__item-tools-tag">Type-based Architecture</span>
+                    </div>
+                    <div class="project__item-link">
                         <a href="https://andresaragonguerrero.github.io/analizadorMinerales/"
-                            class="card-project__link">Visitar web
+                            class="project__item-link-anchor">Visitar web
                             <!-- iconamoon -->
-                            <svg class="card-project__link-icon" height="24px" width="24px"
+                            <svg class="project__item-link-icon" height="24px" width="24px"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2"
@@ -287,38 +258,81 @@
                         </a>
                     </div>
                 </li>
-                <!-- -->
-
-                <li class="projects__card card-project" data-project="hotel-argyros" style="--index: 4;">
-
-                    <h3 class="card-project__title">Hotel Argyros</h3>
-
-                    <div class="card-project__content">
-                        <p class="card-project__description text-reveal-effect">
+                <!-- Proyecto 3 -->
+                <li class="project__item">
+                    <div class="project__item-title">
+                        <h3 class="">Analizador de minerales</h3>
+                    </div>
+                    <figure class="project__item-image">
+                        <img class="project__item-image-media" src="assets/captura-analizador-minerales.png"
+                            alt="Proyecto del zoo">
+                    </figure>
+                    <div class="project__item-description">
+                        <p class="project__item-description-text">
+                            Aplicación web de demostración de una tienda online desarrollada con Angular. Incluye
+                            catálogo de productos, filtros, carrito de compra y gestión de sesión de usuario.
+                        </p>
+                        <p class="project__item-description-text">
+                            Implementé un catálogo de productos con búsqueda, filtros y ordenación, así como un carrito
+                            de compra persistente utilizando LocalStorage.
+                        </p>
+                        <p class="project__item-description-text">
+                            Durante el desarrollo trabajé con Angular y RxJS para gestionar el flujo de datos mediante
+                            Observables y servicios compartidos. También implementé la comunicación entre componentes
+                            mediante inputs, outputs y servicios para mantener un estado consistente en la aplicación.
+                        </p>
+                    </div>
+                    <div class="project__item-tools">
+                        <span class="project__item-tools-tag">Angular</span>
+                        <span class="project__item-tools-tag">TypeScript</span>
+                        <span class="project__item-tools-tag">Type-based Architecture</span>
+                    </div>
+                    <div class="project__item-link">
+                        <a href="https://bestashop.vercel.app/" class="project__item-link-anchor">Visitar web
+                            <!-- iconamoon -->
+                            <svg class="project__item-link-icon" height="24px" width="24px"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M11 4H4v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5M9 15L20 4m-5 0h5v5" />
+                            </svg>
+                        </a>
+                    </div>
+                </li>
+                <!-- Proyecto 4 -->
+                <li class="project__item">
+                    <div class="project__item-title">
+                        <h3 class="">Hotel Argyros</h3>
+                    </div>
+                    <figure class="project__item-image">
+                        <img class="project__item-image-media" src="assets/captura-hotel-argyros.png"
+                            alt="Proyecto del zoo">
+                    </figure>
+                    <div class="project__item-description">
+                        <p class="project__item-description-text">
                             Una aplicación en Angular y .NET para practicar y demostrar arquitectura y buenas prácticas
                             de código.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Este proyecto se encuentra actualmente en desarrollo. Pretendo demostrar mis conocimientos
                             tanto en todo lo relacionado con las bases de datos, como el backend y el frontend.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             El backend está siendo desarrollado siguiendo una arquitectura hexagonal; mientras que el
                             frontend sigue una arquitectura feature-based.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <div class="card-project__tools">
-                            <span class="">.NET</span>
-                            <span class="">Angular</span>
-                            <span class="">SCSS</span>
-                            <span class="">Arquitectura Hexagonal</span>
-                            <span class="">Feature-based Architecture</span>
-                        </div>
-                        <a href="https://argyroshotel.netlify.app/" class="card-project__link">Visitar web
+                    </div>
+                    <div class="project__item-tools">
+                        <span class="project__item-tools-tag">Angular</span>
+                        <span class="project__item-tools-tag">.NET</span>
+                        <span class="project__item-tools-tag">SCSS</span>
+                        <span class="project__item-tools-tag">Arquitectura Hexagonal</span>
+                        <span class="project__item-tools-tag">Feature-based Architecture</span>
+                    </div>
+                    <div class="project__item-link">
+                        <a href="https://argyroshotel.netlify.app/" class="project__item-link-anchor">Visitar web
                             <!-- iconamoon -->
-                            <svg class="card-project__link-icon" height="24px" width="24px"
+                            <svg class="project__item-link-icon" height="24px" width="24px"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2"
@@ -327,37 +341,40 @@
                         </a>
                     </div>
                 </li>
-                <!-- -->
-
-                <li class="projects__card card-project" data-project="libreria-piramide" style="--index: 5;">
-
-                    <h3 class="card-project__title">Librería Pirámide</h3>
-
-                    <div class="card-project__content">
-                        <p class="card-project__description text-reveal-effect">
+                <!-- Proyecto 5 -->
+                <li class="project__item">
+                    <div class="project__item-title">
+                        <h3 class="">Librería Pirámide</h3>
+                    </div>
+                    <figure class="project__item-image">
+                        <img class="project__item-image-media" src="assets/captura-libreria-piramide.png"
+                            alt="Proyecto del zoo">
+                    </figure>
+                    <div class="project__item-description">
+                        <p class="project__item-description-text">
                             Maquetación y diseño frontend creativo para una librería ficticia.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Este proyecto fue un ejercicio centrado en la maquetación avanzada con CSS y la mejora de la
                             experiencia de usuario a través de pequeñas interacciones, priorizando la creatividad visual
                             y la fluidez sobre la lógica compleja.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <p class="card-project__description text-reveal-effect">
+                        <p class="project__item-description-text">
                             Este proyecto me permitió profundizar en el control preciso del layout con Flexbox/Grid, el
                             uso estratégico de transiciones y animaciones CSS para guiar la atención, y la integración
                             sutil de JavaScript.
-                            <span class="text-reveal__bg"></span>
                         </p>
-                        <div class="card-project__tools">
-                            <span class="">HTML</span>
-                            <span class="">CSS</span>
-                            <span class="">JavaScript</span>
-                        </div>
-                        <a href="https://aragonaj.github.io/LibreriaPiramide/" class="card-project__link">Visitar web
+                    </div>
+                    <div class="project__item-tools">
+                        <span class="project__item-tools-tag">HTML</span>
+                        <span class="project__item-tools-tag">CSS</span>
+                        <span class="project__item-tools-tag">JavaScript</span>
+                    </div>
+                    <div class="project__item-link">
+                        <a href="https://aragonaj.github.io/LibreriaPiramide/" class="project__item-link-anchor">Visitar
+                            web
                             <!-- iconamoon -->
-                            <svg class="card-project__link-icon" height="24px" width="24px"
+                            <svg class="project__item-link-icon" height="24px" width="24px"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2"
@@ -365,10 +382,8 @@
                             </svg>
                         </a>
                     </div>
-
                 </li>
             </ul>
-            <div class="projects__backgrounds"></div>
         </section>
 
         <section class="workflow">
